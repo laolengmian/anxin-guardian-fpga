@@ -22,8 +22,8 @@
       "bytes": 4301
     },
     "README.md": {
-      "sha256": "d6661a17814b6c25b6873e535d4943c6ccdfa34e2b0e4b47f42172b5c0444c47",
-      "bytes": 6432
+      "sha256": "24028a3013f1f1e20495c53a0af263344d39efc419219c41c4235a135974b368",
+      "bytes": 8822
     },
     "THIRD_PARTY_NOTICES.md": {
       "sha256": "e0bbc988d6b5a344e673363ab5fd9a62fd8342fed2e1a21c3def517e88fa2809",
@@ -194,7 +194,7 @@
       "bytes": 1947
     },
     "inputs/frozen/rtl/audio/m8_alert_tone.v": {
-      "sha256": "8e2a75bcb257bed69d54b5b17554cfa9dc3bd5108979d263470be32202293665",
+      "sha256": "4ad4f617ad5ba752e29e5ff64e6cc97b8f628a61d74231cad986cb4ef3d8dd91",
       "bytes": 2607
     },
     "inputs/frozen/rtl/audio/m8_audio_arbiter.v": {

@@ -2,7 +2,9 @@
 
 **Anxin Guardian — an FPGA bedside audiovisual information terminal.**
 
-基于国产 **Anlogic EG4S20BG256 / HX4S20C** 开发板的床旁多媒体终端，将本地护理主题图片、语音、中文字幕、六键交互、分级提示与 MAX30102 原始信号处理组织在一套 Verilog 硬件链路中。
+这是一个以**床旁多媒体信息展示与护理宣教**为主线的国产FPGA项目：将图片、配套语音、中文字幕、实体按键和提示信息汇合到同一块显示屏，并通过MAX30102采集链路增加心率、血氧估计及呼吸率信息。
+
+系统以 **HX4S20C / Anlogic EG4S20BG256** 为硬件平台，业务功能由Verilog RTL实现，经 **HDMI_B统一输出画面与声音**，不依赖独立的PC、手机或云端业务客户端。
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -17,7 +19,28 @@
 - **业务提示**：外部拨码触发 Warning / Emergency，Emergency 优先，配合背景和提示音处理；不是算法自动判定病情。
 - **生命体征处理**：MAX30102 双通道采集，FPGA 内定点计算心率、血氧估计和 PPG 推导呼吸率，65 位原子快照跨域并按帧提交。
 
-本项目没有独立 PC / 手机 / 云端业务客户端。
+## 从输入到显示，工程具体做什么？
+
+| 输入 | FPGA内部处理 | 使用者看到或听到的结果 |
+| --- | --- | --- |
+| TF卡里的BMP和WAV | FAT32读取、图片解码与缩放、四Bank缓存、PCM播放 | 健康饮食、安心休养、个人卫生、安全用药四个主题及配套语音 |
+| 语音播放进度 | 按实际消费的PCM样本计数推进字幕和轮播 | 每页三段中文字幕；长语音不会被固定翻页计时直接截断 |
+| 六枚按键 | 去抖、参数调节、切页仲裁与边界提交 | 亮度/音量调节、OSD、手动下一主题和自动轮播 |
+| 外部提示开关 | Warning/Emergency优先级及提示音处理 | 屏幕提示、背景处理及声音提醒 |
+| MAX30102的Red/IR原始样本 | I²C/FIFO读取、定点滤波、三支路估计、有效性管理及跨域同步 | 心率、血氧估计和PPG推导呼吸率；无效读数不继续保持有效标记 |
+| 最终输出PCM | 幅度与包络统计 | Audio Monitor数字音频可视化 |
+
+## 生命体征源码与测试的分工
+
+**实际采集处理链路位于 `rtl/`，并已经连接到生产顶层。**
+
+1. `m9_i2c_register_master.v` 和 `m9_max3010x_acquisition.v`：初始化传感器，读取FIFO中的18位Red/IR样本，处理ACK、背压、溢出和超时。
+2. `m9_ppg_vitals.v` 和 `m9_ppg_rate_estimator.v`：根据输入样本滤波、检测周期并执行心率/呼吸率估计，以及血氧窗口统计与比值运算。
+3. `m9_integer_sqrt.v` 和 `m9_unsigned_divider.v`：提供定点算法所需的整数平方根与除法。
+4. `m9_vital_snapshot_cdc.v` 和 `m9_vital_processing_subsystem.v`：封装采集与算法，将数值、BCD、有效位和来源组成65位快照交给显示域。
+5. `top_4bank_720p_m9_vitals.v` 中的 `u_vital_processing` 实例将该子系统接入终端；显示覆盖层在帧边界提交整组结果。
+
+`sim/` 和 `scripts/test_algorithm.py` 是**独立的HDL测试环境**：在没有开发板时，用可控的原始波形和I²C外设模型验证上述RTL。它们不作为上板设计的传感器输入，不参与终端日常运行；测试激励、真实采集接口和测量标定具有不同用途。
 
 ## 系统数据流
 
@@ -31,7 +54,7 @@ MAX30102 → I²C / FIFO → 定点 PPG 算法 → 65 位快照 ────→ 
 
 Audio Monitor 展示数字音频幅度，不是 ECG，也不是扬声器声压测量。
 
-## 快速运行：不需要 FPGA 板或厂商 IP
+## 快速开始：在电脑上验证采集与算法RTL
 
 需要 Python **3.10+** 与 **Icarus Verilog**（`iverilog`、`vvp`）。Python 脚本仅使用标准库。
 
@@ -41,7 +64,7 @@ cd anxin-guardian-fpga
 python -I scripts/run_tests.py .
 ```
 
-Windows 可使用 `py -3` 替代 `python`。将 Icarus 加入 PATH；也可设置环境变量 `IVERILOG`、`VVP` 为两个可执行文件的位置。无需联网调用模型或外部数据。
+此命令运行HDL测试，不会启动TD、配置管脚或烧写开发板。Windows可使用 `py -3` 替代 `python`；将Icarus加入PATH，或设置环境变量 `IVERILOG`、`VVP` 指定两个可执行文件。
 
 测试在 `results/` 生成 JSON、CSV、日志和局部 VCD；确定性原始 Red/IR 激励写入 `sim/vectors/`。这些生成文件默认不提交到 Git。**结果以当次生成的 `results/TEST_REPORT.json` 为准**，失败或中断不能用历史结果代替。
 
@@ -78,7 +101,7 @@ Windows 可使用 `py -3` 替代 `python`。将 Icarus 加入 PATH；也可设�
 - [TF 媒体格式](docs/MEDIA.md)
 - [第三方许可与公开范围](THIRD_PARTY_NOTICES.md)
 
-## 验证状态与适用范围
+## 已验证内容与硬件接入进度
 
 采集/算法七组 HDL 回归包含 13 组、每组 90 秒等效原始 PPG 输入，另有 45 秒等效 I²C→算法→跨域→参数显示测试。它们证明给定输入和接口条件下的 RTL 行为，**不等同于人体测量准确度或当前算法版板级验收**。
 

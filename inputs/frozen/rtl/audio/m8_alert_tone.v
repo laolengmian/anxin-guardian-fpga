@@ -1,4 +1,4 @@
-// Deterministic, fictional demo cues at the inherited nominal 48 kHz cadence.
+// Two-level notification tone generator at the nominal 48 kHz sample cadence.
 // Warning: 1 kHz, 200 ms per second. Emergency: 2 kHz, 125 ms on/off.
 // Combinational PCM describes the sample about to be consumed; all counters
 // advance only on sample_valid. Any applied bundle change restarts at phase 0.
