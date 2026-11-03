@@ -1,0 +1,6 @@
+{
+  "OS": "Windows",
+  "python": "3.11.5",
+  "iverilog_version_line": "Icarus Verilog version 12.0 (devel) (s20150603-1539-g2693dd32b)",
+  "scope": "Local public-copy HDL tests; not GitHub Actions, not TD synthesis or board capture"
+}

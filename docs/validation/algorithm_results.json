@@ -1,0 +1,249 @@
+[
+  {
+    "case": "normal",
+    "expected": {
+      "hr": 72,
+      "spo2": 98,
+      "rr": 12
+    },
+    "median": {
+      "hr": 72,
+      "spo2": 98,
+      "rr": 12
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 1.0
+    },
+    "pass": true
+  },
+  {
+    "case": "slow",
+    "expected": {
+      "hr": 48,
+      "spo2": 96,
+      "rr": 8
+    },
+    "median": {
+      "hr": 48,
+      "spo2": 96,
+      "rr": 8
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 1.0
+    },
+    "pass": true
+  },
+  {
+    "case": "fast",
+    "expected": {
+      "hr": 144,
+      "spo2": 95,
+      "rr": 24
+    },
+    "median": {
+      "hr": 143,
+      "spo2": 94,
+      "rr": 24
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 1.0
+    },
+    "pass": true
+  },
+  {
+    "case": "low_spo2",
+    "expected": {
+      "hr": 90,
+      "spo2": 90,
+      "rr": 18
+    },
+    "median": {
+      "hr": 90,
+      "spo2": 90,
+      "rr": 18
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 1.0
+    },
+    "pass": true
+  },
+  {
+    "case": "noise",
+    "expected": {
+      "hr": 108,
+      "spo2": 97,
+      "rr": 15
+    },
+    "median": {
+      "hr": 108,
+      "spo2": 97,
+      "rr": 15
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 1.0
+    },
+    "pass": true
+  },
+  {
+    "case": "flat",
+    "expected": {
+      "hr": 0,
+      "spo2": 0,
+      "rr": 0
+    },
+    "median": {
+      "hr": null,
+      "spo2": null,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 0.0,
+      "spo2": 0.0,
+      "rr": 0.0
+    },
+    "pass": true
+  },
+  {
+    "case": "dark",
+    "expected": {
+      "hr": 0,
+      "spo2": 0,
+      "rr": 0
+    },
+    "median": {
+      "hr": null,
+      "spo2": null,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 0.0,
+      "spo2": 0.0,
+      "rr": 0.0
+    },
+    "pass": true
+  },
+  {
+    "case": "saturation",
+    "expected": {
+      "hr": 0,
+      "spo2": 0,
+      "rr": 0
+    },
+    "median": {
+      "hr": null,
+      "spo2": null,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 0.0,
+      "spo2": 0.0,
+      "rr": 0.0
+    },
+    "pass": true
+  },
+  {
+    "case": "weak",
+    "expected": {
+      "hr": 72,
+      "spo2": 98,
+      "rr": 12
+    },
+    "median": {
+      "hr": null,
+      "spo2": null,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 0.0,
+      "spo2": 0.0,
+      "rr": 0.0
+    },
+    "pass": true
+  },
+  {
+    "case": "no_respiration",
+    "expected": {
+      "hr": 72,
+      "spo2": 98,
+      "rr": 0
+    },
+    "median": {
+      "hr": 72,
+      "spo2": 98,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 0.0
+    },
+    "pass": true
+  },
+  {
+    "case": "rate_step",
+    "expected": {
+      "hr": 120,
+      "spo2": 90,
+      "rr": 20
+    },
+    "median": {
+      "hr": 120,
+      "spo2": 90,
+      "rr": 19
+    },
+    "valid_fraction": {
+      "hr": 1.0,
+      "spo2": 1.0,
+      "rr": 1.0
+    },
+    "pass": true
+  },
+  {
+    "case": "contact_loss",
+    "expected": {
+      "hr": 0,
+      "spo2": 0,
+      "rr": 0
+    },
+    "median": {
+      "hr": null,
+      "spo2": null,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 0.0,
+      "spo2": 0.0,
+      "rr": 0.0
+    },
+    "pass": true
+  },
+  {
+    "case": "pulse_loss",
+    "expected": {
+      "hr": 0,
+      "spo2": 0,
+      "rr": 0
+    },
+    "median": {
+      "hr": null,
+      "spo2": null,
+      "rr": null
+    },
+    "valid_fraction": {
+      "hr": 0.0,
+      "spo2": 0.0,
+      "rr": 0.0
+    },
+    "pass": true
+  }
+]

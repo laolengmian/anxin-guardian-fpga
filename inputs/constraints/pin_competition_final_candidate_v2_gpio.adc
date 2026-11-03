@@ -1,0 +1,58 @@
+# ============================================================
+# pin_4bank_m6c.adc — M6-C 720p FAT32四Bank引脚约束
+# 板: HX4S20C (EG4S20BG256)
+# 基础引脚继承已板测v17；TF引脚来自官方lab_ex4/lab_ex5。
+# ============================================================
+
+set_pin_assignment { clk_50m } { LOCATION = R7; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { sys_rst_n } { LOCATION = A2; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+set_pin_assignment { key_next } { LOCATION = B2; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+set_pin_assignment { key_auto } { LOCATION = C1; IOSTANDARD = LVCMOS33; PULLTYPE = PULLUP; }
+
+# HDMI_B
+set_pin_assignment { HDMI_DDC_SCL } { LOCATION = P2; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = PULLUP; }
+set_pin_assignment { HDMI_DDC_SDA } { LOCATION = R2; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = PULLUP; }
+set_pin_assignment { HDMI_CLK_P } { LOCATION = C3; IOSTANDARD = LVDS33; PULLTYPE = NONE; }
+set_pin_assignment { HDMI_D0_P } { LOCATION = G5; IOSTANDARD = LVDS33; PULLTYPE = NONE; }
+set_pin_assignment { HDMI_D1_P } { LOCATION = F1; IOSTANDARD = LVDS33; PULLTYPE = NONE; }
+set_pin_assignment { HDMI_D2_P } { LOCATION = E1; IOSTANDARD = LVDS33; PULLTYPE = NONE; }
+
+# Read-only TF/SD SPI. No write-data command exists in M6-C RTL.
+set_pin_assignment { sd_dclk } { LOCATION = A14; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { sd_miso } { LOCATION = B14; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { sd_mosi } { LOCATION = A13; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { sd_ncs } { LOCATION = A12; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+# Six connected seven-segment digits
+set_pin_assignment { seg7_cathode[0] } { LOCATION = C15; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[1] } { LOCATION = C16; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[2] } { LOCATION = B6; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[3] } { LOCATION = A5; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[4] } { LOCATION = B5; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[5] } { LOCATION = A8; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[6] } { LOCATION = A7; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_cathode[7] } { LOCATION = A6; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_anode[0] } { LOCATION = E12; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_anode[1] } { LOCATION = E10; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_anode[2] } { LOCATION = C13; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_anode[3] } { LOCATION = F10; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_anode[4] } { LOCATION = E11; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+set_pin_assignment { seg7_anode[5] } { LOCATION = D11; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+# M8-A audited active-high board mode inputs (SW1/SW2).
+set_pin_assignment { sw_warning } { LOCATION = C8; IOSTANDARD = LVCMOS33; }
+set_pin_assignment { sw_emergency } { LOCATION = C7; IOSTANDARD = LVCMOS33; }
+set_pin_assignment { sw_diagnostic } { LOCATION = C6; IOSTANDARD = LVCMOS33; }
+
+# M9 final candidate v2 external six-key module.
+# User-confirmed: 3.3 V supply, six independent active-low outputs, onboard pull-ups.
+# FPGA weak pulls remain disabled; physical connection is still blocked pending onsite checks.
+set_pin_assignment { key1_n } { LOCATION = M5; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { key2_n } { LOCATION = M3; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { key3_n } { LOCATION = M4; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { key4_n } { LOCATION = L3; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { key5_n } { LOCATION = J3; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+set_pin_assignment { key6_n } { LOCATION = J4; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+
+# run_03 only: verified board LED1/A4, active high. No external key pin change.
+set_pin_assignment { led_startup_50m } { LOCATION = A4; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }

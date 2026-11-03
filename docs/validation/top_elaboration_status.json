@@ -1,0 +1,13 @@
+{
+  "strict_return_code": 6,
+  "visible_blackbox_return_code": 0,
+  "unexpanded_vendor_types": [
+    "frame_fifo_read",
+    "frame_fifo_write",
+    "rfifo_32_32_512",
+    "sdram",
+    "wfifo_32_32_512"
+  ],
+  "unexpected_missing_types": [],
+  "scope": "SIMULATION branch visible RTL elaboration only; no whole-system simulation, synthesis or board test"
+}

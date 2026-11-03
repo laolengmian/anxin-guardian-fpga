@@ -1,0 +1,66 @@
+{
+  "completed_utc": "2026-11-03T12:46:22.826198+00:00",
+  "pass": true,
+  "suites": [
+    {
+      "suite": "tb_math",
+      "pass": true,
+      "log": "tb_math.log"
+    },
+    {
+      "suite": "tb_acquisition",
+      "pass": true,
+      "log": "tb_acquisition.log"
+    },
+    {
+      "suite": "tb_vital_cdc",
+      "pass": true,
+      "log": "tb_vital_cdc.log"
+    },
+    {
+      "suite": "raw_PPG_waveforms",
+      "cases": 13,
+      "pass": true,
+      "results": "algorithm_results.json"
+    },
+    {
+      "suite": "configurable_calibration",
+      "pass": true,
+      "expected_spo2": 99,
+      "measured_spo2": 99
+    },
+    {
+      "suite": "tb_vital_integration",
+      "pass": true,
+      "log": "tb_vital_integration.log"
+    },
+    {
+      "suite": "Verilog2005_subsystem_compile",
+      "pass": true
+    }
+  ],
+  "tested_source_sha256": {
+    "rtl/m9_i2c_register_master.v": "a89adc92852530f70a169f8472c5d441bae31201face7b828604fea82ecde69a",
+    "rtl/m9_integer_sqrt.v": "20fe0b9d65ac4294b6368d0bfa281307d8a74342eb9b2ce4d695851c83bf3ed2",
+    "rtl/m9_max3010x_acquisition.v": "e0cff47200f653c7f079ade062207cee09e004dbf9c23a0fd479d202dcfe9a33",
+    "rtl/m9_ppg_rate_estimator.v": "14c69288cbcfb744172fe15aa12faf3f3d9a025435f747b0181d25aa021bd6d5",
+    "rtl/m9_ppg_vitals.v": "0030f74fa0bffbdeb37380821767595986972b0fc49ba9871e6bd1102ab03b6c",
+    "rtl/m9_unsigned_divider.v": "129d20d05d72244308f6187b38725f8be09cdb8344eb8563827e1d8aa746680c",
+    "rtl/m9_vital_processing_subsystem.v": "ec1b2ac1810aa11f0f936639fff24e93d016453447355065a9ac58defaaad77f",
+    "rtl/m9_vital_snapshot_cdc.v": "0b280a3688da4576edd9a278ac886dfbf057707ccb4a08e21d0b3218ca915448",
+    "inputs/candidate/rtl/top_4bank_720p_m9_vitals.v": "430a02e4a9baf98bd2d6595e699eb06df10d179fcfad867bd2065fd8103e249b",
+    "inputs/candidate/rtl/m9_vital_monitor_overlay.v": "d0f0e0532719bac056544ac4dc4aae3ab640f93cc3f22cb3a100d921db33c5e7"
+  },
+  "signal_source": "Deterministic raw red/IR PPG stimuli; I2C behavioral peripheral model",
+  "performed": [
+    "HDL simulation",
+    "sensor-register protocol tests",
+    "CDC reset tests",
+    "algorithm waveform regression"
+  ],
+  "not_performed": [
+    "TD synthesis/place/route/bitgen",
+    "board programming or sensor capture",
+    "clinical accuracy validation"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "match": {
+    "url": "https://raw.githubusercontent.com/adobe-fonts/source-han-sans/acd4f19f8dec76504f9bcc43598f94e962c11564/LICENSE.txt",
+    "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+    "commit": "acd4f19f8dec76504f9bcc43598f94e962c11564",
+    "exact_match_to_original_provenance": true
+  },
+  "original_font_binary_included": false
+}

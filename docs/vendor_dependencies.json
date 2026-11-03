@@ -1,0 +1,108 @@
+{
+  "files": [
+    {
+      "path": "inputs/frozen/baseline/lab5_verified/src/td_project/al_ip/PLL_HDMI_AUDIO.ipc",
+      "sha256": "ce38f1b2917ef9df107be46e716767b7c8a78af079412b2988cf266b589bd645",
+      "modules": [],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/baseline/lab5_verified/src/td_project/al_ip/PLL_HDMI_AUDIO.v",
+      "sha256": "1e174c1dc4edbce9c61d6b390aca3b7b94022b60995a92981d5278247b7f5867",
+      "modules": [
+        "PLL_HDMI_AUDIO"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/afifo_16_32_256.v",
+      "sha256": "3d29b06655482184a9ad157b9bd71b79032debe3199168d3b4d9570fdac31835",
+      "modules": [
+        "wfifo_32_32_512",
+        "fifo_cross_domain_addr_process_al_wfifo_32_32_512",
+        "ram_infer_wfifo_32_32_512"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/afifo_32_16_256.v",
+      "sha256": "7c3ee41f30be75ae686c9abff3a840fc5439209cda077e4aa275eac0dab9f564",
+      "modules": [
+        "rfifo_32_32_512",
+        "fifo_cross_domain_addr_process_al_rfifo_32_32_512",
+        "ram_infer_rfifo_32_32_512"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/frame_fifo_read.v",
+      "sha256": "5952075b213ec638f5c9bb238d4d4162685f9e9b5e752674f0e68a92dbec83ac",
+      "modules": [
+        "frame_fifo_read"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/frame_fifo_write.v",
+      "sha256": "ef0f46443b6f79ebb9fbba8f39b11dca90ee7e9ae4637c1d45786744d964e540",
+      "modules": [
+        "frame_fifo_write"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/sdram.v",
+      "sha256": "2a6c03c59520af3a54389ae4ff62bbf81ed4cfb42319665f85d00e891b8bb8fc",
+      "modules": [
+        "sdram"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/sdr_as_ram.enc.v",
+      "sha256": "f3f684a343cfedb889fe7113fb3cf3ff0d6780e71026de9489d987a54857a6cd",
+      "modules": [
+        "sdr_as_ram"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/sdr_init_ref.enc.v",
+      "sha256": "705c24f1576b0cb74469fc0b71c0bac8828f45bc3e561c5ad3e519091484a02e",
+      "modules": [
+        "sdr_init_ref"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/memory/official/sdr_wrrd.enc.v",
+      "sha256": "c7d7fe07d75f66aa88d9f986b3006319c995162434f104f9990664b374cdfdd2",
+      "modules": [],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/system/ip/sys_pll.ipc",
+      "sha256": "95c15f5cae08a2030a9048826fa62f7c01c99979a09006c8afd75f6e8a0f1496",
+      "modules": [],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/system/ip/sys_pll.v",
+      "sha256": "3c27c56d560c0a8c4c7cd5b70aac84aa44adf86030b16335698d6a805ecba9ee",
+      "modules": [
+        "sys_pll"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    },
+    {
+      "path": "inputs/frozen/rtl/video/hdmi_core/hdmi_1_4b_transmitter_core_wrapper.enc.v",
+      "sha256": "867e0b0bdd874bc383d00918c9e1be3fe01edf41f343b6a0d73e262776596a63",
+      "modules": [
+        "hdmi_1_4b_transmitter_core_wrapper"
+      ],
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+    }
+  ],
+  "copy_target": ".local_vendor/<path>",
+  "redistribution": "not included; obtain under applicable vendor terms"
+}
