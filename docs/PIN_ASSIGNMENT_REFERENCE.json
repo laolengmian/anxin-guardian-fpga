@@ -1,0 +1,57 @@
+{
+  "board": "HX4S20C / EG4S20BG256",
+  "assignment_status": "manual_pinout_verified",
+  "manufacturer_schematic_obtained": true,
+  "manual_pinout_verified": true,
+  "manual_title": "HX4S20开发板手册-HDL版2410",
+  "manual_publisher_visible": "杭州康芯电子有限公司 / KX-SOC",
+  "manual_SHA256": "e6d066fdc433259697bcf5dfe9eb791cf8a87d289c75e69fa40172d716afccfe",
+  "manual_evidence": [
+    {
+      "page": 4,
+      "figure": "2-1",
+      "supports": "Board orientation and J2/JP2 connector location."
+    },
+    {
+      "page": 6,
+      "section": "40芯GPIO扩展口J2",
+      "supports": "Expansion IO is 3.3 V; direct 5 V signals are prohibited."
+    },
+    {
+      "page": 7,
+      "figure": "2-4",
+      "table": "J2扩展口引脚分配表",
+      "supports": "J2.31 GPIOB_26=J12; J2.32 GPIOB_27=K11; J2.29=3.3 V; J2.30 and J2.12=GND."
+    }
+  ],
+  "signals": {
+    "vital_i2c_scl": {
+      "FPGA_ball": "J12",
+      "header": "J2",
+      "header_pin": 31,
+      "net": "GPIOB_26"
+    },
+    "vital_i2c_sda": {
+      "FPGA_ball": "K11",
+      "header": "J2",
+      "header_pin": 32,
+      "net": "GPIOB_27"
+    }
+  },
+  "header_supply_reference": {
+    "J2.29": "3.3 V",
+    "J2.30": "GND",
+    "J2.12": "GND",
+    "J2.11": "5 V - not an FPGA IO pull-up rail"
+  },
+  "FPGA_IO_standard": "LVCMOS33",
+  "physical_wiring_verified": true,
+  "actual_board_revision_verified": false,
+  "secondary_reference_url": "https://github.com/xyd-hub/xyd-firstly/blob/HEAD/firmware/src/user_source/constraints_source/pin.adc",
+  "electrical_requirements": [
+    "Confirm the same board revision and connector mapping before applying power.",
+    "Use an appropriate MAX30102 breakout with FPGA-facing 3.3 V I2C compatibility; the bare sensor is not assumed 3.3 V tolerant.",
+    "Open-drain SCL/SDA require pull-ups to a mutually compatible voltage and a shared ground; do not use HDMI DDC."
+  ],
+  "verification_scope": "Manual-verified connector mapping and completed sensor-integration board functional test. Numeric accuracy and detailed instrument records are separate test items."
+}

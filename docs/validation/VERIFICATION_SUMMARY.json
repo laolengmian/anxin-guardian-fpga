@@ -1,0 +1,34 @@
+{
+  "schema": "anxin-verification-summary-v1",
+  "updated_date": "2026-11-04",
+  "pin_binding": {
+    "status": "manual_pinout_verified",
+    "SCL": "J2.31 / GPIOB_26 / J12",
+    "SDA": "J2.32 / GPIOB_27 / K11",
+    "record": "docs/PIN_ASSIGNMENT_REFERENCE.json"
+  },
+  "HDL": {
+    "status": "passed",
+    "suites": 7,
+    "waveform_cases": 13,
+    "record": "docs/validation/TEST_REPORT.json",
+    "source": "local_automated_regression",
+    "source_hashes_still_identical": true,
+    "completed_utc": "2026-11-04T06:58:14.973635+00:00"
+  },
+  "actual_board_sensor_integration": {
+    "status": "passed",
+    "pass": true,
+    "record": "docs/validation/BOARD_TEST_RECORD.json",
+    "result": "实测通过",
+    "test_type": "board_functional_test",
+    "record_date": "2026-11-04"
+  },
+  "detail_evidence": {
+    "numeric_accuracy_calibration": "not_provided",
+    "independent_raw_capture": "not_provided",
+    "TD_reports_and_downloaded_bitstream_hash": "not_provided",
+    "individual_other_function_checks": "not_separately_reported"
+  },
+  "record_interpretation": "TEST_REPORT records automated HDL regressions. BOARD_TEST_RECORD records the completed board-level sensor integration functional test."
+}

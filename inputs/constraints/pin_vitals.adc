@@ -45,7 +45,7 @@ set_pin_assignment { sw_emergency } { LOCATION = C7; IOSTANDARD = LVCMOS33; }
 set_pin_assignment { sw_diagnostic } { LOCATION = C6; IOSTANDARD = LVCMOS33; }
 
 # M9 final candidate v2 external six-key module.
-# User-confirmed: 3.3 V supply, six independent active-low outputs, onboard pull-ups.
+# Six-key module: 3.3 V supply, six independent active-low outputs, onboard pull-ups.
 # FPGA weak pulls remain disabled; physical connection is still blocked pending onsite checks.
 set_pin_assignment { key1_n } { LOCATION = M5; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
 set_pin_assignment { key2_n } { LOCATION = M3; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
@@ -56,3 +56,7 @@ set_pin_assignment { key6_n } { LOCATION = J4; IOSTANDARD = LVCMOS33; PULLTYPE =
 
 # run_03 only: verified board LED1/A4, active high. No external key pin change.
 set_pin_assignment { led_startup_50m } { LOCATION = A4; IOSTANDARD = LVCMOS33; DRIVESTRENGTH = 8; PULLTYPE = NONE; }
+
+set_pin_assignment { vital_i2c_scl } { LOCATION = J12; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }
+
+set_pin_assignment { vital_i2c_sda } { LOCATION = K11; IOSTANDARD = LVCMOS33; PULLTYPE = NONE; }

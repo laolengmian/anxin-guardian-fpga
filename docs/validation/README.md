@@ -1,9 +1,10 @@
-# 发布前验证记录
+# 验证与上板记录
 
-此目录归档公开源码副本在 Windows / Icarus Verilog 中执行的本地验证结果。
-它不是传感器实采、TD物理实现或GitHub Actions结果；Linux干净环境尚未在本轮执行。
+此目录分别归档公开源码副本的本地HDL复测、实板功能结果和统一状态。HDL测试在Windows / Icarus Verilog执行，不是GitHub Actions或Linux验证。生命体征采集与显示上板功能实测通过；仪器采样、量化精度和TD物理报告不由HDL日志替代。
 
-- [TEST_REPORT.json](TEST_REPORT.json)：七组套件状态、测试源码SHA256、执行范围。
+- [VERIFICATION_SUMMARY.json](VERIFICATION_SUMMARY.json)：管脚、HDL与实板功能的统一状态。
+- [BOARD_TEST_RECORD.json](BOARD_TEST_RECORD.json)：生命体征上板功能实测通过记录及分项字段。
+- [TEST_REPORT.json](TEST_REPORT.json)：七组套件状态、公开源码本次SHA256、执行范围。
 - [algorithm_results.json](algorithm_results.json)：13组原始PPG输入的末段有效比例和输出中位数。
 - [top_elaboration_status.json](top_elaboration_status.json)：可见顶层展开范围与未随仓库分发的厂商模块。
 
@@ -40,3 +41,11 @@ HR/RR单位为次/min，SpO₂为%。这些误差只描述特定激励下的整�
 `python -I scripts/check_top.py .` 不提供厂商模块的替代功能实现。
 严格展开应列出缺失模块；公开源码的可见展开允许清单内黑盒，但拒绝未知缺失类型。
 “可见展开通过”不代表完整系统仿真、综合或板测通过。
+
+## 管脚与实板功能
+
+手册第7页已核对J2.31/GPIOB_26→J12和J2.32/GPIOB_27→K11；默认配置与上板功能记录对应同一配对。工程准备脚本改用其他接线时不会继承这一配对的实测状态。手册PDF、照片、独立原始采样及位流不在公开树。未分别登记的功能和精度项目保留独立状态，不自动扩展为全项目通过。
+
+## 工程工具测试
+
+`python -I scripts/test_project_tools.py .` 检查默认/本地管脚优先级、显式取消绑定、冲突与非法输入、实测归档配对匹配，以及厂商依赖精确哈希和仅include目录迁移的校验。工作副本集成检查另验证115个工程路径、重跑幂等、跟踪RTL不变以及当前合法源包的13个依赖导入。

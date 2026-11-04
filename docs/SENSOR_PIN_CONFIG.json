@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "scl_pin": "J12",
+  "sda_pin": "K11",
+  "assignment_status": "manual_pinout_verified"
+}

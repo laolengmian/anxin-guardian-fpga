@@ -56,7 +56,9 @@
       "modules": [
         "sdram"
       ],
-      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license",
+      "relocatable_include_sha256": "f3ff6c0d80f2027f0edc000a84a3d032f69419a595c7cbabfdc719c873217490",
+      "relocation_normalization": "Only the global_def.v include directory is normalized; all other bytes must match."
     },
     {
       "path": "inputs/frozen/rtl/memory/official/sdr_as_ram.enc.v",
@@ -64,7 +66,9 @@
       "modules": [
         "sdr_as_ram"
       ],
-      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license",
+      "relocatable_include_sha256": "4c004820008c948e6f29790448e5185c038d02ae630416baddc871f7d8222c10",
+      "relocation_normalization": "Only the global_def.v include directory is normalized; all other bytes must match."
     },
     {
       "path": "inputs/frozen/rtl/memory/official/sdr_init_ref.enc.v",
@@ -72,7 +76,9 @@
       "modules": [
         "sdr_init_ref"
       ],
-      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license"
+      "purpose": "External Anlogic/board reference dependency; not covered by project MIT license",
+      "relocatable_include_sha256": "cc3abeddc2a8085dde68a8bb98a454c2d5eb3f4ea2821f494989c28ebd900bf9",
+      "relocation_normalization": "Only the global_def.v include directory is normalized; all other bytes must match."
     },
     {
       "path": "inputs/frozen/rtl/memory/official/sdr_wrrd.enc.v",

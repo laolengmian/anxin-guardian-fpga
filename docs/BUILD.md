@@ -1,48 +1,73 @@
-# 复现与 TD 工程准备
+# 复现与TD工程准备
 
-## 1. 无硬件 HDL 回归
+## 1. 纯软件运行工具测试与HDL回归
 
-安装 Python 3.10+ 和 Icarus Verilog，在仓库根目录执行：
+安装Python 3.10+、Icarus Verilog，将 `iverilog` 和 `vvp` 加入PATH，或设置环境变量 `IVERILOG`、`VVP`：
 
 ```bash
+python -I scripts/test_project_tools.py .
+python -I scripts/test_publication.py .
 python -I scripts/run_tests.py .
 ```
 
-脚本依次运行数学、I²C/FIFO、CDC、13组原始波形、可配置系数、端到端和 Verilog-2005 编译测试。依赖 `iverilog`/`vvp` 的 PATH 查找，或环境变量 `IVERILOG`、`VVP`。不需要额外 pip 包。输出写入被 Git 忽略的 `results/` 和 `sim/vectors/`。
+工具测试使用Python标准库；HDL回归依次覆盖数学、I²C/FIFO、CDC、13组原始PPG波形、可配置血氧系数、端到端和Verilog-2005编译。不需要开发板、厂商IP或额外pip包。
 
-## 2. 完整 TD 源码视图：需要单独获取厂商文件
+结果写到忽略的 `results/` 和 `sim/vectors/`。测试开始即将 `results/TEST_REPORT.json` 标为运行中，只有全部完成才写入通过；失败或中断不使用历史通过状态代替。
 
-本仓库不分发13个厂商/板级参考文件。清单及匹配版本的 SHA256 位于 [vendor_dependencies.json](vendor_dependencies.json)。从你有权使用的完整源包获取这些文件，并保留其原目录布局；不要从本仓库寻找加密体或位流。
+## 2. 补齐合法取得的厂商依赖
+
+13个安路/板级参考文件未在公共源码中再分发，版本及SHA256见 [vendor_dependencies.json](vendor_dependencies.json)。从合法持有的完整工程中导入：
 
 ```bash
 python -I scripts/import_vendor_ip.py . --source /path/to/licensed-complete-source
+```
+
+`/path/to/licensed-complete-source` 是本地完整工程根目录占位符，不是下载地址。该目录下应有 `inputs/`，而不是把RAR路径直接作为参数。
+
+导入器先核验全部清单成员，成功后才写入忽略的 `.local_vendor/`。不联网下载、不导入额外文件，不改变原许可。三份引用 `global_def.v` 的依赖支持已锁定的include目录迁移哈希；只允许这一目录字符串变化，其他字节，包括加密体和换行，仍必须匹配。算法或IP版本不同不能靠修改哈希绕过检查。
+
+## 3. 生成完整TD工作副本
+
+```bash
 python -I scripts/prepare_project.py .
 ```
 
-`/path/to/licensed-complete-source` 是你自己的授权源包根目录占位符，不是下载地址。导入器仅复制清单内13个文件，核验版本后放进 `.local_vendor/`，不修改许可，也不联网下载厂商 IP。文件版本不同会停止；应先核对接口和板级实现，不要盲目替换哈希来跳过版本检查。
+生成 `build/td/anxin_guardian_vitals.al`，打开这一文件，不直接打开模板。脚本会复制公开源码与本地依赖，在工作副本重绑include和115个工程记录；**不修改跟踪RTL、不运行综合、布局布线、Bitgen或硬件下载**。
 
-工程准备脚本在 `build/td/` 生成工作副本与 `anxin_guardian_vitals.al`，在副本里重绑 include 和文件路径；**不修改跟踪中的 RTL，不启动 TD，不烧写**。打开生成的 `.al`，而不是直接打开 `td/project_template.al`。
+依赖不齐会明确返回非零状态，不生成虚构厂商模块。工程目标为EG4S20BG256，原TD环境为Tang Dynasty 6.2.168116。其他版本需支持该器件和所用IP。完整源码层次还包含未接入顶层的配套模块，文件存在不表示功能已启用。
 
-本地原工程使用 Tang Dynasty 6.2.168116、EG4S20BG256。工程模板保留原文件属性和编译顺序，包括未启用的配套模块；不能据文件存在就将其列为已实现功能。
+## 4. 默认管脚、局部改线与取消绑定
 
-## 3. 传感器管脚
+默认配置在 `docs/SENSOR_PIN_CONFIG.json`：
 
-只有在核对 HX4S20C 扩展口、管脚占用和接口电压后，才将实际位置传入：
+- SCL：J2第31脚 / GPIOB_26 / FPGA J12。
+- SDA：J2第32脚 / GPIOB_27 / FPGA K11。
+- 手册依据与电气要求见 [HARDWARE.md](HARDWARE.md)。
 
-```text
-python -I scripts/prepare_project.py . --scl-pin <confirmed-SCL-pin> --sda-pin <confirmed-SDA-pin>
+第一次准备读取仓库默认值；以后优先读取忽略的 `build/td/SENSOR_PIN_CONFIG.json`，保留本地选择。明确覆盖或取消：
+
+```bash
+# 明确恢复本项目已核对的接线
+python -I scripts/prepare_project.py . --scl-pin J12 --sda-pin K11
+
+# 取消本地工作副本的传感器位置绑定
+python -I scripts/prepare_project.py . --unbound
 ```
 
-尖括号内容是占位符，不可直接执行。脚本只检查语法和已有约束中的占用，不验证封装 IO 电压或板上线路。未指定位置时，工作副本明确记录 `sensor_pins_bound=false`。
+自定义管脚须同时给出SCL/SDA。脚本检查语法、重复和基础约束占用；不能代替新管脚的板上布线及电压核查。换成其他接线后，`PROJECT_BINDING.json` 的实测归档匹配状态变为待测，不继承原配对结果。取消绑定是显式操作，默认重跑不会自动清空配置。
 
-## 4. 可见顶层展开检查
+## 5. 可见顶层展开
 
 ```bash
 python -I scripts/check_top.py .
 ```
 
-它分别记录严格展开和允许缺失模块的可见展开。外部依赖缺失时严格展开应报告缺少的厂商模块；只有可见部分返回成功并且缺失模块均来自已知依赖时，检查才通过。这个通过**不是**全系统功能仿真、TD综合、时序收敛或板测。
+严格展开记录缺失模块，可见展开仅允许依赖清单中的黑盒；未知缺失类型使检查失败。可见展开通过不是全系统功能仿真或器件时序收敛。运行不会烧写开发板。
 
-## 5. 公开范围
+## 6. 实际上板
 
-`.local_vendor/`、`build/`、`results/`、波形和编译产物都在 `.gitignore` 中。请勿 `git add -f` 厂商文件或私密材料。历史本机日志、原始ZIP、Word说明书和用户照片没有放入仓库。
+生命体征采集与显示链路已实测通过，记录见 [BOARD_TEST_RECORD.json](validation/BOARD_TEST_RECORD.json)。复现者仍需按自己的模块和板卡确认供电、共地、上拉、接点；完成当前代码的综合、布局布线、时序检查和Bitgen后下载本次位流。公共仓库没有预编译位流，TD准备成功也不表示已经生成或下载固件。
+
+## 7. 公开边界
+
+`.local_vendor/`、`build/`、`results/`、波形和编译产物均被忽略。不要强制添加厂商依赖、私密材料或凭据。TF图片音频、照片、Word/PDF报告、原始ZIP与板卡手册PDF未发布；媒体格式见 [MEDIA.md](MEDIA.md)。

@@ -1,0 +1,19 @@
+{
+  "date": "2026-11-04",
+  "unit_tests_pass": 11,
+  "pass": true,
+  "checks": {
+    "missing_dependencies_stop_without_creating_build": true,
+    "current_private_package_imports_only_13_verified_dependencies": true,
+    "default_manual_verified_pair": true,
+    "tracked_sources_unchanged_after_preparation": true,
+    "TD_working_copy_byte_idempotent": true,
+    "all_115_TD_paths_exist": true,
+    "occupied_incomplete_duplicate_pins_rejected_without_mutation": true,
+    "local_changed_pair_persists_without_inheriting_pass": true,
+    "explicit_unbound_persists": true,
+    "restored_pair_matches_archived_result": true,
+    "publication_boundary_check_pass": true,
+    "hardware_not_accessed": true
+  }
+}

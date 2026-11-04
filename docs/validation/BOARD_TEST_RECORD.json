@@ -1,0 +1,101 @@
+{
+  "schema": "anxin-board-test-v1",
+  "status": "passed",
+  "pass": true,
+  "prepared_utc": "2026-11-04T05:57:46.798730+00:00",
+  "board_model": "HX4S20C",
+  "FPGA": "EG4S20BG256",
+  "board_revision": null,
+  "actual_test_date": null,
+  "actual_wiring_confirmed": true,
+  "module_model_and_voltage": null,
+  "pin_assignment": {
+    "scl_ball": "J12",
+    "sda_ball": "K11",
+    "reference_header": "J2",
+    "reference_SCL_label": "GPIOB_26",
+    "reference_SDA_label": "GPIOB_27",
+    "status": "manual_pinout_verified",
+    "header_SCL_pin": 31,
+    "header_SDA_pin": 32
+  },
+  "TD_synthesis_pass": null,
+  "TD_place_route_pass": null,
+  "TD_timing_pass": null,
+  "programmed_bitstream_sha256": null,
+  "captured_raw_samples": null,
+  "tests": [
+    {
+      "item": "actual_board_sensor_integration",
+      "status": "passed",
+      "pass": true,
+      "observations": "生命体征采集与显示链路上板功能测试通过。",
+      "evidence": [],
+      "result": "实测通过"
+    },
+    {
+      "item": "sensor_ID_and_I2C_ACK",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "Red_IR_raw_capture_100Hz",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "HR_SpO2_PPG_RR_validity",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "disconnect_and_recovery",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "four_theme_media_and_subtitles",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "six_keys_and_OSD",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "automatic_manual_arbitration",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    },
+    {
+      "item": "Warning_Emergency_and_media_errors",
+      "status": "not_separately_reported",
+      "pass": null,
+      "observations": null,
+      "evidence": []
+    }
+  ],
+  "HDL_record": "docs/validation/TEST_REPORT.json",
+  "scope": "Board-level life-sign sensor integration functional test. Numeric accuracy and individual instrument measurements are separate test records.",
+  "result_scope": "Life-sign sensor integration on the actual board after the supplied pin binding.",
+  "manual_pinout_verified": true,
+  "manual_reference": "docs/PIN_ASSIGNMENT_REFERENCE.json",
+  "result": "实测通过",
+  "test_type": "board_functional_test",
+  "record_updated_date": "2026-11-04"
+}
